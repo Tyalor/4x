@@ -89,6 +89,7 @@ const Home = () => {
             </button>
           </div>
         </form>
+        </div>
       ) : null}
 
       {isFetching && <p>Loading data...</p>}
