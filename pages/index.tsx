@@ -50,65 +50,67 @@ const Home = () => {
     setHasSubmitted(true);
   };
 
-  return (
-    <div className="bg-black text-green-500 min-h-screen flex flex-col items-center justify-center p-4">
-      {!hasSubmitted || error ? (
-        <form onSubmit={handleApiKeySubmit} className="space-y-4">
-          <div className="flex flex-col items-center">
-            <div>
-              <label className="block text-lg mb-2">
-                Enter your Alpha Vantage API Key:
-              </label>
-              <input
-                type="text"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                className="mt-1 px-3 py-2 bg-green-200 text-green-900 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-lg mb-2">
-                Select Currency Pair:
-              </label>
-              <select
-                value={currencyPair}
-                onChange={(e) => setCurrencyPair(e.target.value)}
-                className="mt-1 px-3 py-2 bg-green-200 text-green-900 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
-              >
-                <option value="EURUSD">EUR/USD</option>
-                <option value="USDJPY">USD/JPY</option>
-                <option value="GBPUSD">GBP/USD</option>
-                <option value="USDCHF">USD/CHF</option>
-                <option value="AUDUSD">AUD/USD</option>
-                <option value="USDCAD">USD/CAD</option>
-              </select>
-            </div>
-            <button type="submit" className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white mt-4">
-              Submit
-            </button>
+
+
+return (
+  <div className="bg-black text-green-500 min-h-screen flex flex-col items-center justify-center p-4">
+    {!hasSubmitted || error ? (
+      <form onSubmit={handleApiKeySubmit} className="space-y-4">
+        <div className="flex flex-col items-center">
+          <div>
+            <label className="block text-lg mb-2">
+              Enter your Alpha Vantage API Key:
+            </label>
+            <input
+              type="text"
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+              className="mt-1 px-3 py-2 bg-green-200 text-green-900 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
+              required
+            />
           </div>
-        </form>
+          <div>
+            <label className="block text-lg mb-2">
+              Select Currency Pair:
+            </label>
+            <select
+              value={currencyPair}
+              onChange={(e) => setCurrencyPair(e.target.value)}
+              className="mt-1 px-3 py-2 bg-green-200 text-green-900 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
+            >
+              <option value="EURUSD">EUR/USD</option>
+              <option value="USDJPY">USD/JPY</option>
+              <option value="GBPUSD">GBP/USD</option>
+              <option value="USDCHF">USD/CHF</option>
+              <option value="AUDUSD">AUD/USD</option>
+              <option value="USDCAD">USD/CAD</option>
+            </select>
+          </div>
+          <button type="submit" className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white mt-4">
+            Submit
+          </button>
         </div>
-      ) : null}
+      </form>
+    ) : null}
 
-      {isFetching && <p>Loading data...</p>}
+    {isFetching && <p>Loading data...</p>}
 
-      {error && <p className="text-red-500">{error}</p>}
+    {error && <p className="text-red-500">{error}</p>}
 
-   {exchangeRate && (
-  <>
-    <h1 className="text-xl font-bold mb-4">Currency Exchange Rate ({currencyPair.slice(0, 3)}/{currencyPair.slice(3, 6)})</h1>
-    <ul>
-      <li>From Currency Code: {exchangeRate['1. From_Currency Code']}</li>
-      <li>To Currency Code: {exchangeRate['2. To_Currency Code']}</li>
-      <li>Exchange Rate: {exchangeRate['5. Exchange Rate']}</li>
-      <li>Last Refreshed: {exchangeRate['6. Last Refreshed']}</li>
-      <li>Time Zone: {exchangeRate['7. Time Zone']}</li>
-    </ul>
-    <p>Last fetched time: {lastFetchedTime}</p>
-  </>
-)}
+    {exchangeRate && (
+      <>
+        <h1 className="text-xl font-bold mb-4">Currency Exchange Rate ({currencyPair.slice(0, 3)}/{currencyPair.slice(3, 6)})</h1>
+        <ul>
+          <li>From Currency Code: {exchangeRate['1. From_Currency Code']}</li>
+          <li>To Currency Code: {exchangeRate['2. To_Currency Code']}</li>
+          <li>Exchange Rate: {exchangeRate['5. Exchange Rate']}</li>
+          <li>Last Refreshed: {exchangeRate['6. Last Refreshed']}</li>
+          <li>Time Zone: {exchangeRate['7. Time Zone']}</li>
+        </ul>
+        <p>Last fetched time: {lastFetchedTime}</p>
+      </>
+    )}
+  </div>
 
 );
 };
